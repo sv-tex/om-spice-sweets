@@ -1,484 +1,575 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Om Spice & Sweets — Indian Grocery, Temple TX</title>
-    <meta name="description" content="Indian grocery store in Temple, Texas. Spices, mithai, cookware, pooja supplies & more. Family-owned since 2015." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Om Spice & Sweets — Indian Grocery, Temple TX</title>
+  <meta name="description" content="Indian grocery store in Temple, Texas. Spices, mithai, cookware, pooja supplies & more. Family-owned since 2015." />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet" />
 
-    <!-- Tailwind via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            fuchsia: '#E60067',
+            marigold: '#FFB800',
+            cream: '#FFFDF9',
+            indigo: '#0D1B3E',
+          },
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+            body: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
 
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        saffron: '#E25A28',
-                        cardamom: '#1B4D22',
-                        cream: '#FAF6EE',
-                        earth: '#1E1B18',
-                    },
-                    fontFamily: {
-                        display: ['Syne', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace'],
-                        body: ['Inter', 'sans-serif'],
-                    },
-                    borderWidth: {
-                        '3': '3px',
-                    },
-                },
-            },
-        };
-    </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+    p { line-height: 1.7; }
+    .leading-relaxed { line-height: 1.75 !important; }
 
-    <style>
-        /* ── Neo-brutalist base ── */
-        .brutal { border: 3px solid #1E1B18; box-shadow: 6px 6px 0 #1E1B18; }
-        .brutal-sm { border: 2px solid #1E1B18; box-shadow: 3px 3px 0 #1E1B18; }
+    .brutal { border: 3px solid #0D1B3E; box-shadow: 6px 6px 0 #0D1B3E; }
+    .brutal-sm { border: 2px solid #0D1B3E; box-shadow: 3px 3px 0 #0D1B3E; }
 
-        /* ── Marquee ticker ── */
-        @keyframes marquee {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .ticker-track {
-            display: flex;
-            width: max-content;
-            animation: marquee 30s linear infinite;
-        }
-        .ticker-wrap:hover .ticker-track {
-            animation-play-state: paused;
-        }
+    /* ── Railway line ── */
+    .railway-line {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      overflow: visible;
+    }
+    @keyframes dash-move { to { stroke-dashoffset: -24; } }
+    .track-path { stroke-dasharray: 6 6; animation: dash-move 2s linear infinite; }
 
-        /* ── Hero image mask ── */
-        .hero-mask {
-            clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
-        }
+    /* ── Marquee ── */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+    .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
 
-        /* ── Aisle card hover ── */
-        .aisle-card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 #1E1B18; }
+    /* ── Ticket hero tilt ── */
+    .ticket-card {
+      transform: rotate(3deg);
+      transition: transform 0.3s ease;
+    }
+    .ticket-card:hover { transform: rotate(0deg); }
 
-        /* ── Smooth scroll ── */
-        html { scroll-behavior: smooth; }
+    /* ── Postcard card ── */
+    .postcard-card {
+      background: #FFFDF9;
+      border: 2px solid #0D1B3E;
+      box-shadow: 6px 6px 0 rgba(13,27,62,0.15);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .postcard-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 10px 10px 0 rgba(13,27,62,0.2);
+    }
+    .postcard-photo { width: 100%; height: 180px; object-fit: cover; display: block; border-bottom: 2px solid #0D1B3E; }
 
-        /* ── Responsive hero mask fix ── */
-        @media (max-width: 768px) {
-            .hero-mask { clip-path: none; }
-        }
-    </style>
+    /* ── Floating medallion sticker ── */
+    .medallion-sticker {
+      position: fixed; bottom: 24px; left: 24px;
+      z-index: 40;
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: #E60067;
+      border: 3px solid #FFFDF9;
+      box-shadow: 4px 4px 0 #0D1B3E;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      color: #FFFDF9;
+    }
+    .medallion-sticker:hover {
+      transform: scale(1.1) rotate(-8deg);
+      box-shadow: 6px 6px 0 #0D1B3E;
+    }
+    .medallion-sticker:active {
+      transform: scale(0.95);
+    }
+    @media (max-width: 767px) {
+      .medallion-sticker { width: 52px; height: 52px; font-size: 18px; bottom: 16px; left: 16px; }
+    }
+
+    /* ── Journal entry ── */
+    .journal-entry {
+      background: #FFFDF9;
+      background-image: repeating-linear-gradient(transparent, transparent 27px, rgba(230,0,103,0.08) 27px, rgba(230,0,103,0.08) 28px);
+      border: 2px solid #0D1B3E;
+      box-shadow: 8px 8px 0 rgba(13,27,62,0.12);
+      position: relative;
+    }
+    .journal-entry::before {
+      content: ''; position: absolute; top: 0; left: 40px;
+      width: 2px; height: 100%;
+      background: rgba(230,0,103,0.15);
+    }
+  </style>
 </head>
-<body class="bg-cream font-body text-earth antialiased">
+<body class="bg-cream font-body text-indigo antialiased relative min-h-screen">
 
-    <!-- ════════════════════════════════════════════
-         NAVIGATION
-    ════════════════════════════════════════════ -->
-    <header class="sticky top-0 z-50 bg-cream border-b-3 border-earth">
-        <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16 lg:h-20">
+  <!-- ══════════════════════════════════════════════
+       RAILWAY LINE SVG (background)
+  ══════════════════════════════════════════════ -->
+  <svg class="railway-line" viewBox="0 0 1400 5500" preserveAspectRatio="xMidYMax meet" fill="none">
+    <path class="track-path" d="
+      M700,0 C700,200 500,280 500,500 C500,720 920,820 920,1050
+      C920,1280 460,1360 460,1620 C460,1880 960,2000 960,2280
+      C960,2560 420,2680 420,2960 C420,3240 1000,3360 1000,3680
+      C1000,4000 520,4150 520,4500 C520,4850 700,5000 700,5500
+    " stroke="#0D1B3E" stroke-width="3" opacity="0.15" />
+    <path d="
+      M706,0 C706,200 506,280 506,500 C506,720 926,820 926,1050
+      C926,1280 466,1360 466,1620 C466,1880 966,2000 966,2280
+      C966,2560 426,2680 426,2960 C426,3240 1006,3360 1006,3680
+      C1006,4000 526,4150 526,4500 C526,4850 706,5000 706,5500
+    " stroke="#0D1B3E" stroke-width="1.5" opacity="0.06" stroke-dasharray="4 4" />
+  </svg>
 
-            <!-- Logo -->
-            <a href="#" class="flex items-center gap-3 no-underline text-earth">
-                <span class="inline-flex items-center justify-center w-10 h-10 bg-saffron text-cream font-display font-extrabold text-xl leading-none">&#x0950;</span>
-                <span class="flex flex-col leading-tight">
-                    <span class="font-display font-extrabold text-lg uppercase tracking-wide">Om Spice &amp; Sweets</span>
-                    <span class="font-mono text-[0.6rem] uppercase tracking-widest text-saffron">Temple, TX — Est. 2015</span>
-                </span>
-            </a>
+  <!-- ══════════════════════════════════════════════
+       STICKY NAV
+  ══════════════════════════════════════════════ -->
+  <header class="sticky top-0 z-50 bg-cream border-b-3 border-indigo">
+    <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16 lg:h-20">
 
-            <!-- Desktop nav -->
-            <nav class="hidden lg:flex items-center gap-8 font-mono text-xs uppercase tracking-widest">
-                <a href="#aisles" class="hover:text-saffron transition-colors">Aisles</a>
-                <a href="#story" class="hover:text-saffron transition-colors">Our Story</a>
-                <a href="#faq" class="hover:text-saffron transition-colors">FAQ</a>
-                <a href="#contact" class="brutal-sm px-5 py-2.5 bg-saffron text-cream font-bold hover:bg-[#d04f1e] transition-colors no-underline">
-                    Find Us / Hours
-                </a>
-            </nav>
+      <!-- Left: Text logo -->
+      <a href="#" class="no-underline shrink-0 flex items-center gap-2" style="color:#0D1B3E;">
+        <span class="inline-flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 bg-fuchsia text-cream font-display font-extrabold text-lg lg:text-xl leading-none rounded-full">&#x0950;</span>
+        <span class="font-display font-extrabold text-lg lg:text-xl uppercase tracking-tight leading-none">OM SPICE &amp; SWEETS</span>
+      </a>
 
-            <!-- Mobile hamburger -->
-            <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
-                <span class="block w-6 h-0.5 bg-earth transition"></span>
-                <span class="block w-6 h-0.5 bg-earth transition"></span>
-                <span class="block w-6 h-0.5 bg-earth transition"></span>
-            </button>
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-8 font-mono text-xs uppercase tracking-widest">
+        <a href="#aisles" class="hover:text-fuchsia transition-colors">Aisles</a>
+        <a href="#story" class="hover:text-fuchsia transition-colors">Our Story</a>
+        <a href="#contact" class="brutal-sm px-5 py-2.5 bg-fuchsia text-cream font-bold hover:bg-[#C40056] transition-all no-underline">
+          Find Us / Hours
+        </a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" class="lg:hidden relative w-8 h-8 flex items-center justify-center" aria-label="Toggle menu">
+        <span class="menu-icon text-xl leading-none font-bold">☰</span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t-3 border-indigo bg-cream">
+      <nav class="flex flex-col font-mono text-xs uppercase tracking-widest">
+        <a href="#aisles" class="px-5 py-4 border-b-2 border-indigo hover:bg-fuchsia hover:text-cream transition-colors">Aisles</a>
+        <a href="#story" class="px-5 py-4 border-b-2 border-indigo hover:bg-fuchsia hover:text-cream transition-colors">Our Story</a>
+        <a href="#contact" class="px-5 py-4 bg-fuchsia text-cream font-bold text-center">Find Us / Hours</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════
+       HERO — centered editorial
+  ══════════════════════════════════════════════ -->
+  <section class="relative z-10 max-w-5xl mx-auto px-5 pt-14 pb-16 lg:pt-20 lg:pb-24 text-center">
+    <span class="font-mono text-xs uppercase tracking-[0.3em] text-fuchsia mb-4 block">Family-owned since 2015</span>
+    <h1 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl uppercase leading-tight text-indigo max-w-4xl mx-auto">
+      Routed in Tradition.<br class="hidden sm:inline" />
+      <span class="text-fuchsia whitespace-nowrap">Cooked with Love.</span>
+    </h1>
+    <p class="font-body text-base sm:text-lg text-indigo/90 mt-5 max-w-prose mx-auto leading-relaxed">
+      Spices that smell like they should. Fresh mithai. Dal, rice, cookware, pooja supplies — and the two sisters who remember your name.
+    </p>
+    <div class="mt-8">
+      <a href="#aisles" class="brutal inline-block px-10 py-4 bg-marigold text-indigo font-display font-bold text-sm uppercase tracking-widest hover:bg-[#D4A000] transition-all no-underline">
+        Browse Our Aisles &darr;
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       MARQUEE TICKER
+  ══════════════════════════════════════════════ -->
+  <section class="relative z-10 border-y-3 border-indigo bg-fuchsia overflow-hidden">
+    <div class="ticker-wrap py-3">
+      <div class="ticker-track font-mono text-xs md:text-sm uppercase tracking-widest text-cream font-bold">
+        <span class="flex items-center gap-8 px-4">
+          <span>&#9733; Fresh mithai just arrived</span>
+          <span>&#8226;</span>
+          <span>New batch of MDH spices</span>
+          <span>&#8226;</span>
+          <span>Haldiram's snack restock</span>
+          <span>&#8226;</span>
+          <span>Fresh produce in-store</span>
+          <span>&#8226;</span>
+          <span>Halal meat available</span>
+          <span>&#8226;</span>
+          <span>Deep diyas for Diwali</span>
+          <span>&#8226;</span>
+          <span>Shan masala back in stock</span>
+          <span>&#8226;</span>
+          <span>Fresh gulab jamun daily</span>
+          <span>&#9733;</span>
+        </span>
+        <span class="flex items-center gap-8 px-4">
+          <span>&#9733; Fresh mithai just arrived</span>
+          <span>&#8226;</span>
+          <span>New batch of MDH spices</span>
+          <span>&#8226;</span>
+          <span>Haldiram's snack restock</span>
+          <span>&#8226;</span>
+          <span>Fresh produce in-store</span>
+          <span>&#8226;</span>
+          <span>Halal meat available</span>
+          <span>&#8226;</span>
+          <span>Deep diyas for Diwali</span>
+          <span>&#8226;</span>
+          <span>Shan masala back in stock</span>
+          <span>&#8226;</span>
+          <span>Fresh gulab jamun daily</span>
+          <span>&#9733;</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       AISLES OF CULTURE — 4 postcard cards with stamps
+  ══════════════════════════════════════════════ -->
+  <section id="aisles" class="relative z-10 max-w-7xl mx-auto px-5 py-16 lg:py-24">
+    <div class="text-center mb-12">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-fuchsia mb-3">What's in our aisles</p>
+      <h2 class="font-display font-extrabold text-4xl md:text-5xl uppercase leading-[0.95] text-indigo">Aisles of Culture</h2>
+      <p class="font-body text-indigo/70 max-w-lg mx-auto mt-4 text-base leading-relaxed">Brands you trust — Deep, Swad, Haldiram's, Shan, MDH, Century — and everything from spices to cookware under one roof.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+
+      <!-- Card 1 — Groceries -->
+      <article class="postcard-card">
+        <div class="relative">
+          <img class="postcard-photo" src="images/spices-market.jpg" alt="Spices and masala powders" loading="lazy" />
+        </div>
+        <div class="p-5">
+          <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia">Groceries</span>
+          <h3 class="font-display font-extrabold text-xl uppercase tracking-tight mt-1">Spices, Dal &amp; Rice</h3>
+          <p class="font-body text-base text-indigo/70 mt-2 leading-relaxed">Turmeric, cumin, garam masala, toor dal, basmati — in the brands you reach for. Shan, Deep, MDH, Everest, India Gate.</p>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Rice</span>
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Spices</span>
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Dals</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 — Mithai -->
+      <article class="postcard-card">
+        <div class="relative">
+          <img class="postcard-photo" src="images/sweets.jpg" alt="Colorful Indian sweets" loading="lazy" />
+        </div>
+        <div class="p-5">
+          <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia">Mithai</span>
+          <h3 class="font-display font-extrabold text-xl uppercase tracking-tight mt-1">Indian Sweets &amp; Snacks</h3>
+          <p class="font-body text-base text-indigo/70 mt-2 leading-relaxed">Gulab jamun, jalebi, barfi, ladoo, kaju katli — Haldiram's and fresh-made daily. Papad, chai, chutneys too.</p>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Barfi</span>
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Gulab Jamun</span>
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Haldiram's</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 — Cookware -->
+      <article class="postcard-card">
+        <div class="relative">
+          <img class="postcard-photo" src="images/cookware.jpg" alt="Traditional Indian cookware" loading="lazy" />
+        </div>
+        <div class="p-5">
+          <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia">Cookware</span>
+          <h3 class="font-display font-extrabold text-xl uppercase tracking-tight mt-1">Kadhai, Tawa &amp; More</h3>
+          <p class="font-body text-base text-indigo/70 mt-2 leading-relaxed">Pressure cookers, steel utensils, cast iron — from Century and Hawkins. Every tool your kitchen needs.</p>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Tawa</span>
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Kadai</span>
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Hawkins</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 — Pooja -->
+      <article class="postcard-card">
+        <div class="relative">
+          <img class="postcard-photo" src="images/pooja.jpg" alt="Pooja and festival supplies" loading="lazy" />
+        </div>
+        <div class="p-5">
+          <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia">Pooja &amp; Festival</span>
+          <h3 class="font-display font-extrabold text-xl uppercase tracking-tight mt-1">Diyas, Incense &amp; Idols</h3>
+          <p class="font-body text-base text-indigo/70 mt-2 leading-relaxed">Agarbatti, pooja thalis, diyas, idols — everything for Diwali, Holi, Pongal, and daily worship.</p>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Incense</span>
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Diyas</span>
+            <span class="inline-block px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider bg-cream border border-indigo/30">Idols</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FAMILY STORY — journal entry + owners photo
+  ══════════════════════════════════════════════ -->
+  <section id="story" class="relative z-10 border-y-3 border-indigo bg-marigold text-indigo">
+    <div class="max-w-7xl mx-auto px-5 py-16 lg:py-24">
+      <div class="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+
+        <!-- Photo — takes 2 cols -->
+        <div class="lg:col-span-2">
+          <div class="brutal overflow-hidden border-cream" style="box-shadow: 8px 8px 0 #FFFDF9;">
+            <img src="images/owners.jpg"
+                 alt="Raj and Manjit at Om Spice and Sweets"
+                 class="w-full h-72 md:h-96 object-cover"
+                 loading="lazy" />
+          </div>
+          <p class="font-mono text-[0.6rem] uppercase tracking-widest text-indigo/60 mt-3 text-center">Raj &amp; Manjit — sisters &amp; owners</p>
         </div>
 
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t-3 border-earth bg-cream">
-            <nav class="flex flex-col font-mono text-xs uppercase tracking-widest">
-                <a href="#aisles" class="px-5 py-4 border-b-2 border-earth hover:bg-saffron hover:text-cream transition-colors">Aisles</a>
-                <a href="#story" class="px-5 py-4 border-b-2 border-earth hover:bg-saffron hover:text-cream transition-colors">Our Story</a>
-                <a href="#faq" class="px-5 py-4 border-b-2 border-earth hover:bg-saffron hover:text-cream transition-colors">FAQ</a>
-                <a href="#contact" class="px-5 py-4 bg-saffron text-cream font-bold text-center">Find Us / Hours</a>
-            </nav>
+        <!-- Text — takes 3 cols -->
+        <div class="lg:col-span-3">
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-fuchsia mb-3">Our Story</p>
+          <h2 class="font-display font-extrabold text-4xl md:text-5xl uppercase leading-[0.95] text-indigo">Two Sisters,<br /><span class="text-fuchsia">One Kitchen Table Dream</span></h2>
+          <div class="mt-6 space-y-4 font-body text-base md:text-lg leading-relaxed text-indigo/85 max-w-2xl">
+            <p>Manjit and Raj have called Central Texas home for decades. They know what it's like to drive hours for the right spice, or wait for family to bring things back in their suitcases. So in 2015, they opened the doors to Om Spice & Sweets.</p>
+            <p>It's still a small store — just two sisters, side by side. No big chain, no corporate backing. Just family, taking care of family. Step inside and you'll find one of them at the counter, ready to ask how your family's doing and which chili powder you actually need.</p>
+            <p class="font-mono text-xs uppercase tracking-widest text-fuchsia">&#9733; Serving Temple, Killeen, Fort Hood, Waco, Belton &amp; beyond</p>
+          </div>
         </div>
-    </header>
 
-    <!-- ════════════════════════════════════════════
-         HERO — asymmetrical split
-    ════════════════════════════════════════════ -->
-    <section class="max-w-7xl mx-auto px-5 pt-10 pb-16 lg:pt-16 lg:pb-24">
-        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      </div>
+    </div>
+  </section>
 
-            <!-- Left: text -->
-            <div class="order-2 lg:order-1">
-                <p class="font-mono text-xs uppercase tracking-[0.2em] text-saffron mb-4">Family-owned since 2015</p>
-                <h1 class="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.9] tracking-tight text-earth">
-                    Your Neighborhood<br />
-                    <span class="text-saffron">Indian Grocery</span>
-                </h1>
-                <p class="font-body text-base md:text-lg leading-relaxed text-earth/70 mt-6 max-w-md">
-                    Spices that smell like they should. Fresh mithai. Dal, rice, cookware, pooja&nbsp;supplies —&nbsp;and the two sisters who remember your name.
-                </p>
-                <div class="flex flex-wrap gap-4 mt-8">
-                    <a href="#aisles" class="brutal px-8 py-3.5 bg-saffron text-cream font-display font-bold text-sm uppercase tracking-widest hover:bg-[#d04f1e] transition-all no-underline">
-                        Explore Aisles
-                    </a>
-                    <a href="tel:+12547421474" class="brutal px-8 py-3.5 bg-cream text-earth font-mono text-xs uppercase tracking-widest hover:bg-earth hover:text-cream transition-all no-underline">
-                        Call (254) 742-1474
-                    </a>
-                </div>
+  <!-- ══════════════════════════════════════════════
+       CONTACT / FAQ — two-column
+  ══════════════════════════════════════════════ -->
+  <section id="contact" class="relative z-10 max-w-7xl mx-auto px-5 py-16 lg:py-24">
+    <div class="text-center mb-12">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-fuchsia mb-3">Come say namaste</p>
+      <h2 class="font-display font-extrabold text-4xl md:text-5xl uppercase leading-[0.95] text-indigo">Plan Your Visit</h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+
+      <!-- Left: contact card -->
+      <div class="brutal bg-cream p-6 lg:p-8">
+        <div class="space-y-5">
+          <div class="flex gap-4 items-start">
+            <span class="text-xl mt-0.5">&#128205;</span>
+            <div>
+              <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia mb-0.5">Address</p>
+              <p class="font-body font-medium text-base">1615 Canyon Creek Dr, Temple, TX 76502</p>
             </div>
-
-            <!-- Right: image mask frame -->
-            <div class="order-1 lg:order-2 relative">
-                <div class="hero-mask brutal overflow-hidden bg-cardamom">
-                    <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=800&q=80&auto=format&fit=crop"
-                         alt="Vibrant Indian spices in wooden bowls"
-                         class="w-full h-72 md:h-96 lg:h-[500px] object-cover opacity-90 hover:opacity-100 transition-opacity"
-                         loading="lazy" />
-                </div>
-                <!-- Decorative offset badge -->
-                <span class="absolute -bottom-3 -right-3 lg:-bottom-4 lg:-right-4 brutal-sm px-4 py-2 bg-cream font-mono text-[0.65rem] uppercase tracking-widest">
-                    &#9733; Since 2015
-                </span>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="text-xl mt-0.5">&#128222;</span>
+            <div>
+              <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia mb-0.5">Phone</p>
+              <a href="tel:+12547421474" class="font-body font-medium text-base text-indigo hover:text-fuchsia transition-colors no-underline">(254) 742-1474</a>
             </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════
-         MARQUEE TICKER
-    ════════════════════════════════════════════ -->
-    <section class="border-y-3 border-earth bg-saffron overflow-hidden">
-        <div class="ticker-wrap py-3">
-            <div class="ticker-track font-mono text-xs md:text-sm uppercase tracking-widest text-cream font-bold">
-                <!-- Repeated for seamless scroll -->
-                <span class="flex items-center gap-8 px-4">
-                    <span>&#9733; Fresh mithai just arrived</span>
-                    <span>&#8226;</span>
-                    <span>New batch of MDH spices</span>
-                    <span>&#8226;</span>
-                    <span>Haldiram's snack restock</span>
-                    <span>&#8226;</span>
-                    <span>Fresh produce in-store</span>
-                    <span>&#8226;</span>
-                    <span>Halal meat available</span>
-                    <span>&#8226;</span>
-                    <span>Deep diyas for Diwali</span>
-                    <span>&#8226;</span>
-                    <span>Shan masala back in stock</span>
-                    <span>&#8226;</span>
-                    <span>Fresh gulab jamun daily</span>
-                    <span>&#9733;</span>
-                </span>
-                <!-- Duplicate for seamless loop -->
-                <span class="flex items-center gap-8 px-4">
-                    <span>&#9733; Fresh mithai just arrived</span>
-                    <span>&#8226;</span>
-                    <span>New batch of MDH spices</span>
-                    <span>&#8226;</span>
-                    <span>Haldiram's snack restock</span>
-                    <span>&#8226;</span>
-                    <span>Fresh produce in-store</span>
-                    <span>&#8226;</span>
-                    <span>Halal meat available</span>
-                    <span>&#8226;</span>
-                    <span>Deep diyas for Diwali</span>
-                    <span>&#8226;</span>
-                    <span>Shan masala back in stock</span>
-                    <span>&#8226;</span>
-                    <span>Fresh gulab jamun daily</span>
-                    <span>&#9733;</span>
-                </span>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="text-xl mt-0.5">&#9993;</span>
+            <div>
+              <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia mb-0.5">Email</p>
+              <a href="mailto:omspicesweets@gmail.com" class="font-body font-medium text-base text-indigo hover:text-fuchsia transition-colors no-underline">omspicesweets@gmail.com</a>
             </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════
-         AISLES OF CULTURE — 4-card grid
-    ════════════════════════════════════════════ -->
-    <section id="aisles" class="max-w-7xl mx-auto px-5 py-16 lg:py-24">
-        <div class="text-center mb-12">
-            <p class="font-mono text-xs uppercase tracking-[0.2em] text-saffron mb-3">What's in our aisles</p>
-            <h2 class="font-display font-extrabold text-4xl md:text-5xl uppercase leading-[0.95] text-earth">Aisles of Culture</h2>
-            <p class="font-body text-earth/70 max-w-lg mx-auto mt-4 text-base">Brands you trust — Deep, Swad, Haldiram's, Shan, MDH, Century — and everything from spices to cookware under one roof.</p>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-
-            <!-- Card 1 — Groceries -->
-            <article class="aisle-card brutal bg-cream transition-all duration-200 cursor-pointer">
-                <div class="h-52 overflow-hidden border-b-3 border-earth">
-                    <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80&auto=format&fit=crop"
-                         alt="Spices and masala powders"
-                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                         loading="lazy" />
-                </div>
-                <div class="p-5 lg:p-6">
-                    <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-cardamom">Groceries</span>
-                    <h3 class="font-display font-extrabold text-xl uppercase tracking-tight mt-1">Spices, Dal &amp; Rice</h3>
-                    <p class="font-body text-sm text-earth/70 mt-2 leading-relaxed">Turmeric, cumin, garam masala, toor dal, basmati — in the brands you reach for. Shan, Deep, MDH, Everest, India Gate.</p>
-                </div>
-            </article>
-
-            <!-- Card 2 — Mithai -->
-            <article class="aisle-card brutal bg-cream transition-all duration-200 cursor-pointer">
-                <div class="h-52 overflow-hidden border-b-3 border-earth">
-                    <img src="https://images.unsplash.com/photo-1758910536889-43ce7b3199fd?w=600&q=80&auto=format&fit=crop"
-                         alt="Colorful Indian sweets"
-                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                         loading="lazy" />
-                </div>
-                <div class="p-5 lg:p-6">
-                    <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-cardamom">Mithai</span>
-                    <h3 class="font-display font-extrabold text-xl uppercase tracking-tight mt-1">Indian Sweets &amp; Snacks</h3>
-                    <p class="font-body text-sm text-earth/70 mt-2 leading-relaxed">Gulab jamun, jalebi, barfi, ladoo, kaju katli — Haldiram's and fresh-made daily. Papad, chai, chutneys too.</p>
-                </div>
-            </article>
-
-            <!-- Card 3 — Cookware -->
-            <article class="aisle-card brutal bg-cream transition-all duration-200 cursor-pointer">
-                <div class="h-52 overflow-hidden border-b-3 border-earth">
-                    <img src="https://images.unsplash.com/photo-1725483990707-1584a62acd0f?w=600&q=80&auto=format&fit=crop"
-                         alt="Traditional Indian cookware"
-                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                         loading="lazy" />
-                </div>
-                <div class="p-5 lg:p-6">
-                    <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-cardamom">Cookware</span>
-                    <h3 class="font-display font-extrabold text-xl uppercase tracking-tight mt-1">Kadhai, Tawa &amp; More</h3>
-                    <p class="font-body text-sm text-earth/70 mt-2 leading-relaxed">Pressure cookers, steel utensils, cast iron — from Century and Hawkins. Every tool your kitchen needs.</p>
-                </div>
-            </article>
-
-            <!-- Card 4 — Pooja -->
-            <article class="aisle-card brutal bg-cream transition-all duration-200 cursor-pointer">
-                <div class="h-52 overflow-hidden border-b-3 border-earth">
-                    <img src="https://images.unsplash.com/photo-1761471681038-06270dea0f2f?w=600&q=80&auto=format&fit=crop"
-                         alt="Pooja and festival supplies"
-                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                         loading="lazy" />
-                </div>
-                <div class="p-5 lg:p-6">
-                    <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-cardamom">Pooja &amp; Festival</span>
-                    <h3 class="font-display font-extrabold text-xl uppercase tracking-tight mt-1">Diyas, Incense &amp; Idols</h3>
-                    <p class="font-body text-sm text-earth/70 mt-2 leading-relaxed">Agarbatti, pooja thalis, diyas, idols — everything for Diwali, Holi, Pongal, and daily worship.</p>
-                </div>
-            </article>
-
-        </div>
-
-        <div class="text-center mt-10">
-            <a href="tel:+12547421474" class="brutal-sm inline-block px-6 py-3 font-mono text-xs uppercase tracking-widest bg-cream hover:bg-earth hover:text-cream transition-all no-underline text-earth">
-                Call to check stock &rarr;
-            </a>
-        </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════
-         FAMILY STORY
-    ════════════════════════════════════════════ -->
-    <section id="story" class="border-y-3 border-earth bg-cardamom text-cream">
-        <div class="max-w-7xl mx-auto px-5 py-16 lg:py-24">
-            <div class="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-
-                <!-- Photo — takes 2 cols -->
-                <div class="lg:col-span-2">
-                    <div class="brutal overflow-hidden border-cream border-3" style="box-shadow: 8px 8px 0 #FAF6EE;">
-                        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=700&q=80&auto=format&fit=crop"
-                             alt="Manjit and Raj at Om Spice and Sweets"
-                             class="w-full h-72 md:h-96 object-cover"
-                             loading="lazy" />
-                    </div>
-                    <p class="font-mono text-[0.6rem] uppercase tracking-widest text-cream/60 mt-3 text-center">Manjit &amp; Raj — sisters &amp; owners</p>
-                </div>
-
-                <!-- Text — takes 3 cols -->
-                <div class="lg:col-span-3">
-                    <p class="font-mono text-xs uppercase tracking-[0.2em] text-saffron mb-3">Our Story</p>
-                    <h2 class="font-display font-extrabold text-4xl md:text-5xl uppercase leading-[0.95]">Two Sisters,<br /><span class="text-saffron">One Kitchen Table Dream</span></h2>
-                    <div class="mt-6 space-y-4 font-body text-sm md:text-base leading-relaxed text-cream/85 max-w-2xl">
-                        <p>Manjit and Raj have called Central Texas home for decades. They know what it's like to drive hours for the right spice, or wait for family to bring things back in their suitcases. So in 2015, they opened the doors to Om Spice & Sweets.</p>
-                        <p>It's still a small store — just two sisters, side by side. No big chain, no corporate backing. Just family, taking care of family. Step inside and you'll find one of them at the counter, ready to ask how your family's doing and which chili powder you actually need.</p>
-                        <p class="font-mono text-xs uppercase tracking-widest text-saffron">&#9733; Serving Temple, Killeen, Fort Hood, Waco, Belton &amp; beyond</p>
-                    </div>
-                </div>
-
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="text-xl mt-0.5">&#128338;</span>
+            <div>
+              <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia mb-0.5">Store Hours</p>
+              <p class="font-body text-base leading-relaxed">
+                Mon–Sat: 11:00 AM – 7:30 PM<br />
+                Sun: 12:00 PM – 7:30 PM
+              </p>
+              <p class="font-mono text-[0.6rem] uppercase tracking-widest text-indigo/50 mt-1">DST hours shown</p>
             </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════
-         CONTACT / FAQ — two-column brutal layout
-    ════════════════════════════════════════════ -->
-    <section id="contact" class="max-w-7xl mx-auto px-5 py-16 lg:py-24">
-        <div class="text-center mb-12">
-            <p class="font-mono text-xs uppercase tracking-[0.2em] text-saffron mb-3">Come say namaste</p>
-            <h2 class="font-display font-extrabold text-4xl md:text-5xl uppercase leading-[0.95] text-earth">Find Us Here</h2>
+          </div>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-8">
-
-            <!-- Left: contact card -->
-            <div class="brutal bg-cream p-6 lg:p-8">
-                <div class="space-y-5">
-                    <!-- Address -->
-                    <div class="flex gap-4 items-start">
-                        <span class="text-xl mt-0.5">&#128205;</span>
-                        <div>
-                            <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-cardamom mb-0.5">Address</p>
-                            <p class="font-body font-medium text-base">1615 Canyon Creek Dr, Temple, TX 76502</p>
-                        </div>
-                    </div>
-                    <!-- Phone -->
-                    <div class="flex gap-4 items-start">
-                        <span class="text-xl mt-0.5">&#128222;</span>
-                        <div>
-                            <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-cardamom mb-0.5">Phone</p>
-                            <a href="tel:+12547421474" class="font-body font-medium text-base text-earth hover:text-saffron transition-colors no-underline">(254) 742-1474</a>
-                        </div>
-                    </div>
-                    <!-- Hours -->
-                    <div class="flex gap-4 items-start">
-                        <span class="text-xl mt-0.5">&#128338;</span>
-                        <div>
-                            <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-cardamom mb-0.5">Store Hours</p>
-                            <p class="font-body text-base leading-relaxed">
-                                Mon–Sat: 11:00 AM – 7:30 PM<br />
-                                Sun: 12:00 PM – 7:30 PM
-                            </p>
-                            <p class="font-mono text-[0.6rem] uppercase tracking-widest text-earth/50 mt-1">DST hours shown — check Facebook for updates</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="https://maps.google.com/maps?daddr=1615+Canyon+Creek+Dr+Temple+TX+76502" target="_blank" rel="noopener"
-                       class="brutal-sm flex items-center gap-2 px-5 py-3 bg-cardamom text-cream font-mono text-xs uppercase tracking-widest hover:bg-[#143918] transition-all no-underline">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        Launch Google Maps
-                    </a>
-                    <a href="https://www.facebook.com/omspiceandsweets/" target="_blank" rel="noopener"
-                       class="brutal-sm px-5 py-3 bg-cream font-mono text-xs uppercase tracking-widest hover:bg-earth hover:text-cream transition-all no-underline text-earth">
-                        Facebook
-                    </a>
-                </div>
-            </div>
-
-            <!-- Right: FAQ card -->
-            <div class="brutal bg-cream p-6 lg:p-8">
-                <p class="font-mono text-xs uppercase tracking-[0.2em] text-saffron mb-4">Got Questions?</p>
-                <div class="space-y-5 divide-y-2 divide-earth">
-                    <div class="pt-0">
-                        <p class="font-display font-bold text-sm uppercase tracking-wide">Do you accept EBT / SNAP?</p>
-                        <p class="font-body text-sm text-earth/70 mt-1.5">Yes! We accept cash, credit/debit cards, and EBT/SNAP.</p>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-display font-bold text-sm uppercase tracking-wide">Do you offer money transfer?</p>
-                        <p class="font-body text-sm text-earth/70 mt-1.5">Absolutely. Ria money transfer — send securely to India and around the world, right at our counter.</p>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-display font-bold text-sm uppercase tracking-wide">Do you carry halal meat?</p>
-                        <p class="font-body text-sm text-earth/70 mt-1.5">Yes — fresh halal meat, quality cuts. Ask us what's available when you stop by.</p>
-                    </div>
-                    <div class="pt-4">
-                        <p class="font-display font-bold text-sm uppercase tracking-wide">Is parking easy?</p>
-                        <p class="font-body text-sm text-earth/70 mt-1.5">Plenty of parking right out front. We're off Canyon Creek Drive in Temple.</p>
-                    </div>
-                </div>
-                <p class="font-mono text-[0.6rem] uppercase tracking-widest text-earth/50 mt-5 text-center">&#9733; Proudly serving Nepali, Indian, Bangladeshi, Pakistani &amp; Sri Lankan communities</p>
-            </div>
-
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="https://maps.google.com/maps?daddr=1615+Canyon+Creek+Dr+Temple+TX+76502" target="_blank" rel="noopener"
+             class="brutal-sm flex items-center gap-2 px-5 py-3 bg-marigold text-cream font-mono text-xs uppercase tracking-widest hover:bg-[#D4A000] transition-all no-underline">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Launch Google Maps
+          </a>
+          <a href="https://www.facebook.com/omspiceandsweets/" target="_blank" rel="noopener"
+             class="brutal-sm px-5 py-3 bg-cream font-mono text-xs uppercase tracking-widest hover:bg-indigo hover:text-cream transition-all no-underline text-indigo">
+            Facebook
+          </a>
         </div>
-    </section>
+      </div>
 
-    <!-- ════════════════════════════════════════════
-         FOOTER — deep forest green
-    ════════════════════════════════════════════ -->
-    <footer class="border-t-3 border-earth bg-cardamom text-cream">
-        <div class="max-w-7xl mx-auto px-5 py-12 lg:py-16">
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <!-- Right: FAQ card -->
+      <div class="brutal bg-cream p-6 lg:p-8">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-fuchsia mb-4">Got Questions?</p>
+        <div class="space-y-5 divide-y-2 divide-ink">
+          <div class="pt-0">
+            <p class="font-display font-bold text-sm uppercase tracking-wide">Do you accept EBT / SNAP?</p>
+            <p class="font-body text-base text-indigo/70 mt-1.5 leading-relaxed">Yes! We accept cash, credit/debit cards, and EBT/SNAP.</p>
+          </div>
+          <div class="pt-4">
+            <p class="font-display font-bold text-sm uppercase tracking-wide">Do you offer money transfer?</p>
+            <p class="font-body text-base text-indigo/70 mt-1.5 leading-relaxed">Absolutely. Ria money transfer — send securely to India and around the world, right at our counter.</p>
+          </div>
+          <div class="pt-4">
+            <p class="font-display font-bold text-sm uppercase tracking-wide">Do you carry halal meat?</p>
+            <p class="font-body text-base text-indigo/70 mt-1.5 leading-relaxed">Yes — fresh halal meat, quality cuts. Ask us what's available when you stop by.</p>
+          </div>
+          <div class="pt-4">
+            <p class="font-display font-bold text-sm uppercase tracking-wide">Is parking easy?</p>
+            <p class="font-body text-base text-indigo/70 mt-1.5 leading-relaxed">Plenty of parking right out front. We're off Canyon Creek Drive in Temple.</p>
+          </div>
+        </div>
+        <p class="font-mono text-[0.6rem] uppercase tracking-widest text-indigo/50 mt-5 text-center">&#9733; Proudly serving Nepali, Indian, Bangladeshi, Pakistani &amp; Sri Lankan communities</p>
+      </div>
 
-                <!-- Brand -->
-                <div class="sm:col-span-2 lg:col-span-1">
-                    <span class="inline-flex items-center justify-center w-10 h-10 bg-saffron text-cream font-display font-extrabold text-xl leading-none mb-3">&#x0950;</span>
-                    <p class="font-display font-extrabold text-lg uppercase tracking-wide">Om Spice &amp; Sweets</p>
-                    <p class="font-mono text-[0.6rem] uppercase tracking-widest text-cream/50 mt-1">Temple, TX — Est. 2015</p>
-                    <p class="font-body text-sm text-cream/70 mt-4 leading-relaxed max-w-xs">Serving Central Texas with real Indian groceries. Small, family-run, and proud of it.</p>
-                </div>
+    </div>
 
-                <!-- Quick links -->
-                <div>
-                    <p class="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-saffron mb-3">Navigate</p>
-                    <nav class="flex flex-col gap-2 font-body text-sm text-cream/70">
-                        <a href="#aisles" class="hover:text-cream transition-colors no-underline">Aisles</a>
-                        <a href="#story" class="hover:text-cream transition-colors no-underline">Our Story</a>
-                        <a href="#contact" class="hover:text-cream transition-colors no-underline">Contact</a>
-                        <a href="https://www.facebook.com/omspiceandsweets/" target="_blank" rel="noopener" class="hover:text-cream transition-colors no-underline">Facebook</a>
-                    </nav>
-                </div>
+    <!-- ══════════════════════════════════════
+         REVIEW CALLOUT
+    ══════════════════════════════════════ -->
+    <div class="mt-12 brutal bg-cream p-6 lg:p-8 text-center max-w-2xl mx-auto">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-fuchsia mb-2">Love Us? Share the Word!</p>
+      <p class="font-body text-base text-indigo/80 leading-relaxed max-w-lg mx-auto">
+        If we've helped make your kitchen feel a little more like home, <strong>leave a review</strong> and tell your friends about us. It means the world to two sisters in Temple.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 mt-5">
+        <a href="https://www.facebook.com/omspiceandsweets/reviews" target="_blank" rel="noopener"
+           class="brutal-sm px-5 py-3 bg-[#1877F2] text-white font-mono text-xs uppercase tracking-widest hover:opacity-90 transition-all no-underline flex items-center gap-2">
+          <span>&#120143;</span> Facebook Review
+        </a>
+        <a href="https://search.google.com/local/writereview?placeid=1615+Canyon+Creek+Dr+Temple+TX+76502" target="_blank" rel="noopener"
+           class="brutal-sm px-5 py-3 bg-[#DB4437] text-white font-mono text-xs uppercase tracking-widest hover:opacity-90 transition-all no-underline flex items-center gap-2">
+          <span>&#9733;</span> Google Review
+        </a>
+        <a href="https://www.yelp.com/search?find_desc=Om+Spice+and+Sweets&find_loc=Temple+TX" target="_blank" rel="noopener"
+           class="brutal-sm px-5 py-3 bg-[#D32323] text-white font-mono text-xs uppercase tracking-widest hover:opacity-90 transition-all no-underline flex items-center gap-2">
+          <span>&#11088;</span> Yelp
+        </a>
+      </div>
+      <p class="font-mono text-[0.55rem] uppercase tracking-widest text-indigo/40 mt-4">Share with your community &mdash; word of mouth keeps our shelves stocked</p>
+    </div>
+  </section>
 
-                <!-- Store Hours -->
-                <div>
-                    <p class="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-saffron mb-3">Store Hours</p>
-                    <div class="font-body text-sm text-cream/70 space-y-1">
-                        <p>Mon–Sat: 11:00 AM – 7:30 PM</p>
-                        <p>Sun: 12:00 PM – 7:30 PM</p>
-                        <p class="font-mono text-[0.55rem] uppercase tracking-widest text-cream/40 mt-2">Daylight Saving Time hours</p>
-                    </div>
-                </div>
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer class="relative z-10 border-t-3 border-indigo bg-marigold text-indigo">
+    <div class="max-w-7xl mx-auto px-5 py-12 lg:py-16">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 
-                <!-- Call to action -->
-                <div>
-                    <p class="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-saffron mb-3">Get Directions</p>
-                    <p class="font-body text-sm text-cream/70 mb-4">1615 Canyon Creek Dr<br />Temple, TX 76502</p>
-                    <a href="https://maps.google.com/maps?daddr=1615+Canyon+Creek+Dr+Temple+TX+76502" target="_blank" rel="noopener"
-                       class="brutal-sm inline-flex items-center gap-2 px-5 py-3 bg-saffron text-cream font-mono text-xs uppercase tracking-widest hover:bg-[#d04f1e] transition-all no-underline">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        Launch Google Maps
-                    </a>
-                </div>
-
-            </div>
+        <div class="sm:col-span-2 lg:col-span-1">
+          <span class="inline-flex items-center justify-center w-10 h-10 bg-fuchsia text-cream font-display font-extrabold text-xl leading-none mb-3">&#x0950;</span>
+          <p class="font-display font-extrabold text-lg uppercase tracking-wide">Om Spice &amp; Sweets</p>
+          <p class="font-mono text-[0.6rem] uppercase tracking-widest text-indigo/50 mt-1">Temple, TX — Est. 2015</p>
+          <p class="font-body text-base text-indigo/70 mt-4 leading-relaxed max-w-xs">Serving Central Texas with real Indian groceries. Small, family-run, and proud of it.</p>
         </div>
 
-        <!-- Bottom bar -->
-        <div class="border-t-2 border-cream/10 py-4">
-            <p class="font-mono text-[0.55rem] uppercase tracking-widest text-cream/40 text-center max-w-7xl mx-auto px-5">
-                &copy; 2026 Om Spice and Sweets &middot; Serving Central Texas &middot; Family-owned &amp; women-run
-            </p>
+        <div>
+          <p class="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-fuchsia mb-3">Navigate</p>
+          <nav class="flex flex-col gap-3 font-body text-base text-indigo/70">
+            <a href="#aisles" class="hover:text-indigo transition-colors no-underline">Aisles</a>
+            <a href="#story" class="hover:text-indigo transition-colors no-underline">Our Story</a>
+            <a href="#contact" class="hover:text-indigo transition-colors no-underline">Contact</a>
+            <a href="https://www.facebook.com/omspiceandsweets/" target="_blank" rel="noopener" class="hover:text-indigo transition-colors no-underline">Facebook</a>
+            <a href="https://search.google.com/local/writereview?placeid=1615+Canyon+Creek+Dr+Temple+TX+76502" target="_blank" rel="noopener" class="hover:text-indigo transition-colors no-underline">Google Reviews</a>
+            <a href="https://www.yelp.com/search?find_desc=Om+Spice+and+Sweets&find_loc=Temple+TX" target="_blank" rel="noopener" class="hover:text-indigo transition-colors no-underline">Yelp</a>
+            <a href="mailto:omspicesweets@gmail.com" class="hover:text-indigo transition-colors no-underline">Email</a>
+          </nav>
         </div>
-    </footer>
 
-    <!-- ════════════════════════════════════════════
-         MOBILE MENU TOGGLE
-    ════════════════════════════════════════════ -->
-    <script>
-        document.getElementById('menu-btn')?.addEventListener('click', function () {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        <div>
+          <p class="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-fuchsia mb-3">Store Hours</p>
+          <div class="font-body text-base text-indigo/70 space-y-1">
+            <p>Mon–Sat: 11:00 AM – 7:30 PM</p>
+            <p>Sun: 12:00 PM – 7:30 PM</p>
+            <p class="font-mono text-[0.55rem] uppercase tracking-widest text-indigo/40 mt-2">Daylight Saving Time hours</p>
+          </div>
+        </div>
+
+        <div>
+          <p class="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-fuchsia mb-3">Get Directions</p>
+          <p class="font-body text-base text-indigo/70 mb-4">1615 Canyon Creek Dr<br />Temple, TX 76502</p>
+          <a href="https://maps.google.com/maps?daddr=1615+Canyon+Creek+Dr+Temple+TX+76502" target="_blank" rel="noopener"
+             class="brutal-sm inline-flex items-center gap-2 px-5 py-3 bg-fuchsia text-cream font-mono text-xs uppercase tracking-widest hover:bg-[#C40056] transition-all no-underline">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Launch Google Maps
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="border-t-2 border-indigo/10 py-4">
+      <p class="font-mono text-[0.55rem] uppercase tracking-widest text-indigo/40 text-center max-w-7xl mx-auto px-5">
+        &copy; 2026 Om Spice and Sweets &middot; Serving Central Texas &middot; Family-owned &amp; women-run
+      </p>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════
+       FLOATING MEDALLION STICKER (bottom-left)
+       Click to scroll to "Plan Your Visit" / hours section
+  ══════════════════════════════════════════════ -->
+  <button id="scroll-sticker" class="medallion-sticker" aria-label="Scroll to hours">
+    &#x0950;
+  </button>
+
+  <script>
+    // ── Mobile menu toggle ──
+    (function() {
+      var btn = document.getElementById('menu-btn');
+      var menu = document.getElementById('mobile-menu');
+      if (btn && menu) {
+        var icon = btn.querySelector('.menu-icon');
+        btn.addEventListener('click', function () {
+          var open = menu.classList.toggle('hidden');
+          icon.textContent = open ? '☰' : '✕';
         });
         document.querySelectorAll('#mobile-menu a').forEach(function (link) {
-            link.addEventListener('click', function () {
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
+          link.addEventListener('click', function () {
+            menu.classList.add('hidden');
+            icon.textContent = '☰';
+          });
         });
-    </script>
+      }
+    })();
+
+    // ── Medallion sticker scroll-to-contact ──
+    (function() {
+      var sticker = document.getElementById('scroll-sticker');
+      if (sticker) {
+        sticker.addEventListener('click', function () {
+          var target = document.getElementById('contact');
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+    })();
+  </script>
 
 </body>
 </html>
