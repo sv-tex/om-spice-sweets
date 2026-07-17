@@ -58,8 +58,12 @@
             "longitude": -97.378772
         },
         "openingHoursSpecification": [
-            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "11:00", "closes": "19:30" },
-            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "19:30" }
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "11:00", "closes": "19:30", "validFrom": "2026-03-08", "validThrough": "2026-11-01" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "19:30", "validFrom": "2026-03-08", "validThrough": "2026-11-01" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "11:00", "closes": "18:30", "validFrom": "2026-01-01", "validThrough": "2026-03-07" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "18:30", "validFrom": "2026-01-01", "validThrough": "2026-03-07" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "11:00", "closes": "18:30", "validFrom": "2026-11-02", "validThrough": "2026-12-31" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "18:30", "validFrom": "2026-11-02", "validThrough": "2026-12-31" }
         ],
         "priceRange": "$",
         "servesCuisine": "Indian",
@@ -297,7 +301,7 @@
                     <span class="contact-icon">&#128338;</span>
                     <div>
                         <strong>Hours</strong>
-                        <p>Mon–Sat 11AM–7:30PM &nbsp;|&nbsp; Sun 12–7:30PM</p>
+                        <p><span class="hours-dst" data-mode="short"></span></p>
                     </div>
                 </div>
                 <div class="social-btns">
@@ -358,6 +362,10 @@
                 </div>
             </div>
         </div>
+        <div class="store-info-divider">
+            <span class="section-label">What Our Customers Say</span>
+        </div>
+        <div id="reviews-container" class="reviews-section"></div>
     </div>
 </section>
 
@@ -537,7 +545,7 @@
         <div class="footer-contact">
             <p>1615 Canyon Creek Dr, Temple, TX 76502</p>
             <p><a href="tel:+12547421474">(254) 742-1474</a></p>
-            <p>Mon–Sat 11AM–7:30PM &nbsp;|&nbsp; Sun 12–7:30PM</p>
+            <p><span class="hours-dst" data-mode="short"></span></p>
         </div>
     </div>
     <div class="footer-bar">
