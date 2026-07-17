@@ -1,17 +1,17 @@
 /* ── Design System ── */
 :root {
-    --clr-primary: #D4522A;
-    --clr-primary-dark: #B8401E;
-    --clr-secondary: #1A7A5C;
-    --clr-secondary-light: #219A72;
-    --clr-bg: #FEFAF6;
-    --clr-bg-alt: #F5EDE7;
+    --clr-primary: #E06A28;
+    --clr-primary-dark: #C45A20;
+    --clr-secondary: #2D5A27;
+    --clr-secondary-light: #3D7A35;
+    --clr-bg: #FDFBF7;
+    --clr-bg-alt: #F4F0E6;
     --clr-surface: #FFFFFF;
-    --clr-text: #2D1B14;
+    --clr-text: #2C2520;
     --clr-text-secondary: #6B5B55;
-    --clr-border: #E8DDD6;
+    --clr-border: #E0D8CC;
     --clr-gold: #D4A853;
-    --font-display: 'Playfair Display', Georgia, serif;
+    --font-display: 'Outfit', sans-serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
     --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
@@ -280,7 +280,7 @@ header.scrolled {
 .btn-primary:hover {
     background: var(--clr-primary-dark);
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(194, 81, 51, 0.35);
+    box-shadow: 0 4px 16px rgba(224, 106, 40, 0.35);
 }
 
 .btn-outline {
@@ -307,7 +307,7 @@ header.scrolled {
     color: #fff;
     border-color: var(--clr-secondary);
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(26, 122, 92, 0.3);
+    box-shadow: 0 4px 16px rgba(45, 90, 39, 0.3);
 }
 
 /* ── Sections ── */
@@ -330,7 +330,7 @@ header.scrolled {
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--clr-primary);
+    color: var(--clr-secondary);
     margin-bottom: 0.75rem;
 }
 
@@ -795,8 +795,8 @@ header.scrolled {
     font-weight: 600;
     letter-spacing: 0.8px;
     text-transform: uppercase;
-    color: var(--clr-primary);
-    border: 1px solid var(--clr-primary);
+    color: var(--clr-secondary);
+    border: 1px solid var(--clr-secondary);
     border-radius: 100px;
     padding: 0.15rem 0.6rem;
     margin-bottom: 0.6rem;
@@ -842,15 +842,15 @@ header.scrolled {
     margin-top: 1rem;
     font-size: 0.82rem;
     font-style: italic;
-    color: var(--clr-primary);
+    color: var(--clr-secondary);
     border-top: 1px solid var(--clr-border);
     padding-top: 0.75rem;
 }
 
 /* ── Footer ── */
 footer {
-    background: var(--clr-text);
-    color: rgba(255,255,255,0.8);
+    background: var(--clr-secondary);
+    color: rgba(255,255,255,0.9);
     padding: 3.5rem 0 0;
 }
 
