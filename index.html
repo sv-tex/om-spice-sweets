@@ -3,8 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Om Spice & Sweets — Indian Grocery, Temple TX</title>
-  <meta name="description" content="Indian grocery store in Temple, Texas. Spices, mithai, cookware, pooja supplies & more. Family-owned since 2015." />
+  <title>Om Spice & Sweets — Indian Grocery Store, Temple TX | Family-Owned Since 2015</title>
+  <meta name="description" content="Family-owned Indian grocery in Temple, TX. Spices, fresh mithai, cookware, pooja supplies, halal meat, EBT/SNAP accepted. Serving Temple, Killeen, Fort Hood, Waco & Belton. (254) 742-1474." />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="Indian grocery Temple TX, Indian spices, mithai, halal meat, Indian cookware, pooja supplies, Om Spice and Sweets, Indian store Killeen" />
+  <link rel="canonical" href="https://sv-tex.github.io/om-spice-sweets/" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23E60067'>&#x0950;</text></svg>" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23E60067'>&#x0950;</text></svg>" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Om Spice & Sweets — Indian Grocery, Temple TX" />
+  <meta property="og:description" content="Family-owned Indian grocery in Temple, TX. Spices, fresh mithai, cookware, pooja supplies & more. Two sisters serving Central Texas since 2015." />
+  <meta property="og:url" content="https://sv-tex.github.io/om-spice-sweets/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://sv-tex.github.io/om-spice-sweets/images/owners.jpg" />
+  <meta property="og:image:alt" content="Raj and Manjit — owners of Om Spice and Sweets" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Om Spice & Sweets — Indian Grocery, Temple TX" />
+  <meta name="twitter:description" content="Family-owned Indian grocery in Temple, TX. Spices, fresh mithai, cookware, pooja supplies & more." />
+  <meta name="twitter:image" content="https://sv-tex.github.io/om-spice-sweets/images/owners.jpg" />
+
+  <!-- Schema.org LocalBusiness JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Om Spice and Sweets",
+    "image": "https://sv-tex.github.io/om-spice-sweets/images/owners.jpg",
+    "url": "https://sv-tex.github.io/om-spice-sweets/",
+    "telephone": "(254) 742-1474",
+    "email": "omspicesweets@gmail.com",
+    "description": "Family-owned Indian grocery store serving Temple, Killeen, Fort Hood, Waco, and Belton. Spices, mithai, cookware, pooja supplies, halal meat, and more.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1615 Canyon Creek Dr",
+      "addressLocality": "Temple",
+      "addressRegion": "TX",
+      "postalCode": "76502",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "11:00",
+        "closes": "19:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "12:00",
+        "closes": "19:30"
+      }
+    ],
+    "priceRange": "$",
+    "paymentAccepted": ["Cash","Credit Card","Debit Card","EBT","SNAP"],
+    "sameAs": [
+      "https://www.facebook.com/omspiceandsweets/"
+    ],
+    "areaServed": ["Temple","Killeen","Fort Hood","Waco","Belton"]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -57,7 +121,8 @@
       100% { transform: translateX(-50%); }
     }
     .ticker-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
-    .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+    .ticker-wrap:hover .ticker-track,
+    .ticker-wrap:focus-within .ticker-track { animation-play-state: paused; }
 
     /* ── Ticket hero tilt ── */
     .ticket-card {
@@ -174,9 +239,9 @@
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden lg:hidden border-t-3 border-indigo bg-cream">
       <nav class="flex flex-col font-mono text-xs uppercase tracking-widest">
-        <a href="#aisles" class="px-5 py-4 border-b-2 border-indigo hover:bg-fuchsia hover:text-cream transition-colors">Aisles</a>
-        <a href="#story" class="px-5 py-4 border-b-2 border-indigo hover:bg-fuchsia hover:text-cream transition-colors">Our Story</a>
-        <a href="#contact" class="px-5 py-4 bg-fuchsia text-cream font-bold text-center">Find Us / Hours</a>
+        <a href="#aisles" class="px-5 py-4 border-b-2 border-indigo hover:bg-fuchsia hover:text-cream transition-colors flex items-center min-h-[44px]">Aisles</a>
+        <a href="#story" class="px-5 py-4 border-b-2 border-indigo hover:bg-fuchsia hover:text-cream transition-colors flex items-center min-h-[44px]">Our Story</a>
+        <a href="#contact" class="px-5 py-4 bg-fuchsia text-cream font-bold text-center flex items-center justify-center min-h-[44px]">Find Us / Hours</a>
       </nav>
     </div>
   </header>
@@ -203,8 +268,8 @@
   <!-- ══════════════════════════════════════════════
        MARQUEE TICKER
   ══════════════════════════════════════════════ -->
-  <section class="relative z-10 border-y-3 border-indigo bg-fuchsia overflow-hidden">
-    <div class="ticker-wrap py-3">
+  <section class="relative z-10 border-y-3 border-indigo bg-fuchsia overflow-hidden" aria-label="Store announcements">
+    <div class="ticker-wrap py-3" tabindex="0" role="marquee" aria-live="off" aria-label="Scrolling store announcements. Hover or focus to pause.">
       <div class="ticker-track font-mono text-xs md:text-sm uppercase tracking-widest text-cream font-bold">
         <span class="flex items-center gap-8 px-4">
           <span>&#9733; Fresh mithai just arrived</span>
@@ -247,6 +312,30 @@
   </section>
 
   <!-- ══════════════════════════════════════════════
+       SERVICE BADGES + ORDERING STATUS
+  ══════════════════════════════════════════════ -->
+  <section class="relative z-10 bg-cream border-b-2 border-indigo/10">
+    <div class="max-w-5xl mx-auto px-5 py-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-center">
+      <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-indigo/70">
+        <span class="w-5 h-5 rounded-full bg-fuchsia text-cream flex items-center justify-center text-[10px] font-bold" aria-hidden="true">$</span>
+        EBT / SNAP Accepted
+      </span>
+      <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-indigo/70">
+        <span class="w-5 h-5 rounded-full bg-marigold text-indigo flex items-center justify-center text-[9px] font-bold" aria-hidden="true">&#8594;</span>
+        Ria Money Transfer
+      </span>
+      <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-indigo/70">
+        <span class="w-5 h-5 rounded-full bg-fuchsia text-cream flex items-center justify-center text-[10px]" aria-hidden="true">&#10003;</span>
+        Halal Meat Available
+      </span>
+      <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-indigo/70">
+        <span class="w-5 h-5 rounded-full bg-marigold text-indigo flex items-center justify-center text-[9px]" aria-hidden="true">&#9742;</span>
+        In-Store &amp; Phone Orders
+      </span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
        AISLES OF CULTURE — 4 postcard cards with stamps
   ══════════════════════════════════════════════ -->
   <section id="aisles" class="relative z-10 max-w-7xl mx-auto px-5 py-16 lg:py-24">
@@ -261,7 +350,7 @@
       <!-- Card 1 — Groceries -->
       <article class="postcard-card">
         <div class="relative">
-          <img class="postcard-photo" src="images/spices-market.jpg" alt="Spices and masala powders" loading="lazy" />
+          <img class="postcard-photo" src="images/spices-market.jpg" alt="Bulk spices and masala powders at Om Spice and Sweets Indian grocery store in Temple Texas" loading="lazy" />
         </div>
         <div class="p-5">
           <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia">Groceries</span>
@@ -278,7 +367,7 @@
       <!-- Card 2 — Mithai -->
       <article class="postcard-card">
         <div class="relative">
-          <img class="postcard-photo" src="images/sweets.jpg" alt="Colorful Indian sweets" loading="lazy" />
+          <img class="postcard-photo" src="images/sweets.jpg" alt="Fresh Indian sweets and mithai including barfi and gulab jamun at Om Spice and Sweets" loading="lazy" />
         </div>
         <div class="p-5">
           <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia">Mithai</span>
@@ -295,7 +384,7 @@
       <!-- Card 3 — Cookware -->
       <article class="postcard-card">
         <div class="relative">
-          <img class="postcard-photo" src="images/cookware.jpg" alt="Traditional Indian cookware" loading="lazy" />
+          <img class="postcard-photo" src="images/cookware.jpg" alt="Traditional Indian cookware including kadai, tawa and brass utensils at Om Spice and Sweets" loading="lazy" />
         </div>
         <div class="p-5">
           <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia">Cookware</span>
@@ -312,7 +401,7 @@
       <!-- Card 4 — Pooja -->
       <article class="postcard-card">
         <div class="relative">
-          <img class="postcard-photo" src="images/pooja.jpg" alt="Pooja and festival supplies" loading="lazy" />
+          <img class="postcard-photo" src="images/pooja.jpg" alt="Pooja and festival supplies including diyas, incense and idols at Om Spice and Sweets" loading="lazy" />
         </div>
         <div class="p-5">
           <span class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia">Pooja &amp; Festival</span>
@@ -377,28 +466,28 @@
       <div class="brutal bg-cream p-6 lg:p-8">
         <div class="space-y-5">
           <div class="flex gap-4 items-start">
-            <span class="text-xl mt-0.5">&#128205;</span>
+            <span class="text-xl mt-0.5 shrink-0" aria-hidden="true">&#128205;</span>
             <div>
               <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia mb-0.5">Address</p>
               <p class="font-body font-medium text-base">1615 Canyon Creek Dr, Temple, TX 76502</p>
             </div>
           </div>
           <div class="flex gap-4 items-start">
-            <span class="text-xl mt-0.5">&#128222;</span>
+            <span class="text-xl mt-0.5 shrink-0" aria-hidden="true">&#128222;</span>
             <div>
               <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia mb-0.5">Phone</p>
-              <a href="tel:+12547421474" class="font-body font-medium text-base text-indigo hover:text-fuchsia transition-colors no-underline">(254) 742-1474</a>
+              <a href="tel:+12547421474" class="font-body font-medium text-base text-indigo hover:text-fuchsia transition-colors no-underline" aria-label="Call (254) 742-1474">(254) 742-1474</a>
             </div>
           </div>
           <div class="flex gap-4 items-start">
-            <span class="text-xl mt-0.5">&#9993;</span>
+            <span class="text-xl mt-0.5 shrink-0" aria-hidden="true">&#9993;</span>
             <div>
               <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia mb-0.5">Email</p>
               <a href="mailto:omspicesweets@gmail.com" class="font-body font-medium text-base text-indigo hover:text-fuchsia transition-colors no-underline">omspicesweets@gmail.com</a>
             </div>
           </div>
           <div class="flex gap-4 items-start">
-            <span class="text-xl mt-0.5">&#128338;</span>
+            <span class="text-xl mt-0.5 shrink-0" aria-hidden="true">&#128338;</span>
             <div>
               <p class="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fuchsia mb-0.5">Store Hours</p>
               <p class="font-body text-base leading-relaxed">
@@ -412,21 +501,36 @@
 
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="https://maps.google.com/maps?daddr=1615+Canyon+Creek+Dr+Temple+TX+76502" target="_blank" rel="noopener"
-             class="brutal-sm flex items-center gap-2 px-5 py-3 bg-marigold text-cream font-mono text-xs uppercase tracking-widest hover:bg-[#D4A000] transition-all no-underline">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+             class="brutal-sm flex items-center gap-2 px-5 py-3 bg-marigold text-indigo font-mono text-xs uppercase tracking-widest hover:bg-[#D4A000] transition-all no-underline min-h-[44px]">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             Launch Google Maps
           </a>
           <a href="https://www.facebook.com/omspiceandsweets/" target="_blank" rel="noopener"
-             class="brutal-sm px-5 py-3 bg-cream font-mono text-xs uppercase tracking-widest hover:bg-indigo hover:text-cream transition-all no-underline text-indigo">
+             class="brutal-sm px-5 py-3 bg-cream font-mono text-xs uppercase tracking-widest hover:bg-indigo hover:text-cream transition-all no-underline text-indigo min-h-[44px]">
             Facebook
           </a>
+        </div>
+
+        <!-- Embedded Google Map -->
+        <div class="mt-6">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.5!2d-97.343!3d31.107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDA2JzI1LjIiTiA5N8KwMjAnMzQuOCJX!5e0!3m2!1sen!2sus!4v1!4m5!1m4!2m1!1s1615+Canyon+Creek+Dr+Temple+TX+76502"
+            width="100%"
+            height="220"
+            style="border:2px solid #0D1B3E;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map showing Om Spice and Sweets at 1615 Canyon Creek Dr, Temple TX"
+            aria-label="Interactive Google Map of store location">
+          </iframe>
         </div>
       </div>
 
       <!-- Right: FAQ card -->
       <div class="brutal bg-cream p-6 lg:p-8">
         <p class="font-mono text-xs uppercase tracking-[0.2em] text-fuchsia mb-4">Got Questions?</p>
-        <div class="space-y-5 divide-y-2 divide-ink">
+        <div class="space-y-5 divide-y-2 divide-indigo">
           <div class="pt-0">
             <p class="font-display font-bold text-sm uppercase tracking-wide">Do you accept EBT / SNAP?</p>
             <p class="font-body text-base text-indigo/70 mt-1.5 leading-relaxed">Yes! We accept cash, credit/debit cards, and EBT/SNAP.</p>
